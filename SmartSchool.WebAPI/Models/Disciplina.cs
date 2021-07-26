@@ -12,7 +12,7 @@ namespace SmartSchool.WebAPI.Models
         public string Nome { get; set; }
         public int ProfessorId { get; set; }
         public Professor Professor { get; set; }
-        public IEnumerable<AlunoDisciplina> AlunosDisciplinas { get; set; }
+        public IEnumerable<AlunoDisciplina> Alunos { get; set; }
 
         public Disciplina(int id, string nome, int professorId)
         {

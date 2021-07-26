@@ -12,7 +12,7 @@ namespace SmartSchool.WebAPI.Models
 
         }
 
-        public Professor(int id, string nome, IEnumerable<Disciplina> disciplinas)
+        public Professor(int id, string nome)
         {
             Id = id;
             Nome = nome;
