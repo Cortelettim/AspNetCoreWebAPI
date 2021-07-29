@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartSchool.WebAPI.Data;
 using SmartSchool.WebAPI.Dtos;
+using SmartSchool.WebAPI.Helpers;
 using SmartSchool.WebAPI.Models;
 
 namespace SmartSchool.WebAPI.Controllers
@@ -25,9 +27,9 @@ namespace SmartSchool.WebAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get([FromQuery]PageParams pageParams)
         {
-            var result = _repo.GetAllAlunos(true);
+            var result = await _repo.GetAllAlunosAsync(pageParams, true);
 
             if (result == null) return BadRequest("Nao ha alunos cadastrados");
 

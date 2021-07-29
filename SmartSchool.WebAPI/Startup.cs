@@ -40,6 +40,16 @@ namespace SmartSchool.WebAPI
                             Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddSwaggerGen(opt =>
+            {
+                opt.SwaggerDoc("smartschoolapi",
+                new Microsoft.OpenApi.Models.OpenApiInfo()
+                {
+                    Title = "SmarSchool API",
+                    Version = "1.0",
+                }
+                );
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +64,12 @@ namespace SmartSchool.WebAPI
 
             app.UseRouting();
 
+            app.UseSwagger()
+                .UseSwaggerUI(opt =>
+                {
+                    opt.SwaggerEndpoint("swagger/smartschoolapi/swagger.json", "smartschollapi");
+                    opt.RoutePrefix = "";
+                });
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
